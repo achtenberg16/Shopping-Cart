@@ -1,0 +1,71 @@
+/* reset do css padrão */
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ border: 0;
+ text-decoration: none;
+ list-style: none;
+}
+
+header{
+    border: solid 1px;
+    width: 70vw;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header-cart{
+ width: 30%;
+ background-color: red;
+ position: absolute;
+ right: 0;
+ top: 0;
+ height: 30px;
+ text-align: center;
+ line-height: 30px;
+ font-size: 20px;
+}
+
+main{
+    width: 70%;
+    border: solid;
+    display: inline-block;
+}
+aside{
+    display: inline-block;
+    border: solid;
+    width: 30%;
+    position: absolute;
+    right: 0;
+    height: 500px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+.product-item{
+    position: relative;
+    border: solid red;
+    flex-basis: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.product-img{
+    width: 80px;
+    display: block;
+   margin: 0 auto;
+}
+.addToCart{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
