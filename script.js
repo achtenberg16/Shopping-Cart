@@ -1,5 +1,6 @@
 const container = document.querySelector('.container');
 const cart = document.querySelector('.Cart-itens');
+const input = document.querySelector('#search');
 
 function createCartItem({ title, price, thumbnail }) {
   const div = document.createElement('div');
@@ -46,11 +47,20 @@ function createCardItens({ id, thumbnail, title, price }) {
   container.appendChild(div);
 }
 
-async function renderProducts() {
+async function renderProducts(param) {
   // eslint-disable-next-line no-undef
-  const dados = await fetchProducts('QUERY');
+  const dados = await fetchProducts(param);
   dados.results.forEach((element) => {
     createCardItens(element);
   });
 }
-window.onload = renderProducts();
+
+input.addEventListener('keyup', async (event) => {
+  if (event.keyCode === 13) {
+    container.innerHTML = '';
+    await renderProducts(event.target.value);
+    input.value = '';
+  }
+});
+
+window.onload = renderProducts('QUERY');
