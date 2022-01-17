@@ -32,10 +32,9 @@ function createCardItens({ id, thumbnail, title, price }) {
   const div = document.createElement('div');
   div.className = 'product-item';
   div.innerHTML = `
-    <img src=${thumbnail} class="product-img">
-    <span class="product-text">${title}</span>
-    <span class="product-price">${price}</span>
-    <button class="addToCart" onclick="addItemToCart(${id})">Adicionar ao carrinho</button>
+    <div><img src=${thumbnail} class="product-img">
+    <p class="product-text">${title}</p></div>
+    <p class="product-price">R$${price}</p>
   `;
 
   const addButton = document.createElement('button');
