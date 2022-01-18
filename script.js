@@ -2,6 +2,27 @@ const container = document.querySelector('.container');
 const cart = document.querySelector('.Cart-itens');
 const input = document.querySelector('#search');
 
+const getSavedCartItems = () => localStorage.getItem('cartItems');
+const saveCartItems = (item) => localStorage.setItem('cartItems', item);
+
+const updateTotalPrice = () => {
+  const pricesArr = Array.from(document.querySelectorAll('.cart-item-price'));
+  const priceElement = document.querySelector('.total-price');
+
+  const totalPrice = pricesArr.reduce((acc, { innerText }) => {
+    const [, price] = innerText.split('$');
+    return acc + Number(price);
+  }, 0);
+
+  priceElement.innerText = `R$${totalPrice.toFixed(2)}`;
+};
+
+const removeCartItem = (event) => {
+  event.target.parentNode.remove();
+  saveCartItems(cart.innerHTML);
+  updateTotalPrice();
+};
+
 function createCartItem({ title, price, thumbnail }) {
   const div = document.createElement('div');
   div.className = 'cart-item';
@@ -14,9 +35,7 @@ function createCartItem({ title, price, thumbnail }) {
   const removeButton = document.createElement('a');
   removeButton.className = 'remove-item';
   removeButton.innerText = 'Remover do carrinho';
-  removeButton.addEventListener('click', (event) =>
-    event.target.parentNode.remove()
-  );
+  removeButton.addEventListener('click', removeCartItem);
 
   div.append(removeButton);
   cart.appendChild(div);
@@ -26,6 +45,8 @@ async function addItemToCart(id) {
   // eslint-disable-next-line no-undef
   const item = await fetchItem(id);
   createCartItem(item);
+  saveCartItems(cart.innerHTML);
+  updateTotalPrice();
 }
 
 function createCardItens({ id, thumbnail, title, price }) {
@@ -44,6 +65,7 @@ function createCardItens({ id, thumbnail, title, price }) {
 
   div.appendChild(addButton);
   container.appendChild(div);
+  updateTotalPrice();
 }
 
 async function renderProducts(param) {
@@ -62,4 +84,17 @@ input.addEventListener('keyup', async (event) => {
   }
 });
 
-window.onload = renderProducts('QUERY');
+const getCartFromLocalStorage = () => {
+  cart.innerHTML = getSavedCartItems();
+  const removeBtnArr = Array.from(document.querySelectorAll('.remove-item'));
+
+  removeBtnArr.forEach((btn) => {
+    btn.addEventListener('click', removeCartItem);
+  });
+};
+
+window.onload = () => {
+  renderProducts('QUERY');
+  getCartFromLocalStorage();
+  updateTotalPrice();
+};
