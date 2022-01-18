@@ -67,7 +67,7 @@ aside {
 }
 
 .container {
-  background-color: whitesmoke;
+  background-color: #f1f1ee;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -88,6 +88,8 @@ aside {
 }
 .product-item:hover {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1.025);
+transition: 200ms ease-in-out;
 }
 .product-item div {
   box-sizing: border-box;
@@ -199,4 +201,30 @@ footer {
 .empty-cart:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.load{
+  margin-top: 25%;
+  animation: is-rotating 1s infinite;
+  width: 50px;
+  height: 50px;
+  border: 6px solid #e5e5e5;
+  border-top: solid 6px blue;
+  border-radius: 50%;
+  
+}
+
+.load2{
+  animation: is-rotating 1s infinite;
+  width: 40px;
+  height: 40px;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-bottom: solid 6px red;
+
+}
+@keyframes is-rotating{
+  to {
+      transform: rotate(1turn);
+  }
 }

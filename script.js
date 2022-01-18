@@ -50,6 +50,19 @@ function createCartItem({ title, price, thumbnail }) {
   cart.appendChild(div);
 }
 
+function loading (){
+  const div1 = document.createElement('div')
+  const div2 = document.createElement('div')
+  div1.className = 'load'
+  div2.className = 'load2'
+  div1.appendChild(div2)
+  container.appendChild(div1)
+}
+
+function removeLoad(){
+  const loadRemove = document.querySelector('.load')
+  loadRemove.remove()
+}
 async function addItemToCart(id) {
   // eslint-disable-next-line no-undef
   const item = await fetchItem(id);
@@ -78,8 +91,10 @@ function createCardItens({ id, thumbnail, title, price }) {
 }
 
 async function renderProducts(param) {
+  loading();
   // eslint-disable-next-line no-undef
   const dados = await fetchProducts(param);
+  removeLoad();
   dados.results.forEach((element) => {
     createCardItens(element);
   });
@@ -103,7 +118,7 @@ const getCartFromLocalStorage = () => {
 };
 
 window.onload = () => {
-  renderProducts('QUERY');
+  renderProducts()
   getCartFromLocalStorage();
   updateTotalPrice();
 };
