@@ -5,7 +5,7 @@ Neste projeto utilizamos a API do Mercado Livre, O intuito foi praticar:
 - Requisições para API;
 - Funções assíncronas;
 - Callbacks;
-- Session Storage;
+- Local Storage;
 - Media Query;
 - flex box;
 - HTML Semantico;
