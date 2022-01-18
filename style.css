@@ -100,7 +100,7 @@ transition: 200ms ease-in-out;
 }
 .product-text {
   font-size: 12px;
-  padding: 10px;
+  padding: 5px;
 }
 .product-price {
   font-weight: 500;
@@ -152,6 +152,8 @@ transition: 200ms ease-in-out;
 }
 .cart-item:hover {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1.025);
+  transition: 200ms ease-in-out;
 }
 .cart-item div {
   position: absolute;
