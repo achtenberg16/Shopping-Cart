@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const cart = document.querySelector('.Cart-itens');
 const input = document.querySelector('#search');
+const empty = document.querySelector('.empty-cart');
 
 const getSavedCartItems = () => localStorage.getItem('cartItems');
 const saveCartItems = (item) => localStorage.setItem('cartItems', item);
@@ -16,6 +17,14 @@ const updateTotalPrice = () => {
 
   priceElement.innerText = `R$${totalPrice.toFixed(2)}`;
 };
+
+const emptyCart = () => {
+  console.log('clicked');
+  cart.innerHTML = '';
+  saveCartItems('');
+  updateTotalPrice();
+};
+empty.addEventListener('click', emptyCart);
 
 const removeCartItem = (event) => {
   event.target.parentNode.remove();

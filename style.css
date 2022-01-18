@@ -41,7 +41,7 @@ header a {
 
 .total-price {
   font-size: 16px;
-  margin-left: 15px;
+  margin: 0 15px;
   border-radius: 10px;
   padding: 5px;
   border: 1px solid whitesmoke;
@@ -194,4 +194,9 @@ footer {
   line-height: 60px;
   height: 60px;
   background-color: #fff159;
+}
+
+.empty-cart:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
