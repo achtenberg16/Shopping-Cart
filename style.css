@@ -403,6 +403,9 @@ footer {
     width: 100px;
     font-size: 12px;
   }
+  .cart-item-price{
+    font-size: 12px;
+  }
   .remove-item{
     font-size: 12px;
   }
