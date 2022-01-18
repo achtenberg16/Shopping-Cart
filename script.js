@@ -6,9 +6,9 @@ function createCartItem({ title, price, thumbnail }) {
   const div = document.createElement('div');
   div.className = 'cart-item';
   div.innerHTML = `
-  <img src=${thumbnail} class="cart-item-img">
-  <span class="cart-item-text">${title}</span>
-  <span class="cart-item-price">${price}</span>
+  <div><img src=${thumbnail} class="cart-item-img">
+  <span class="cart-item-text">${title}</span></div>
+  <span class="cart-item-price">R$${price}</span>
   `;
 
   const removeButton = document.createElement('a');
