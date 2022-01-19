@@ -1,3 +1,4 @@
+
 const container = document.querySelector('.container');
 const cart = document.querySelector('.Cart-itens');
 const input = document.querySelector('#search');
@@ -89,15 +90,38 @@ function createCardItens({ id, thumbnail, title, price }) {
   container.appendChild(div);
   updateTotalPrice();
 }
+function failSearch (){
+const elemento = document.createElement('div');
+elemento.className = 'div-fail';
+const h2 = document.createElement('h2');
+h2.className = ('title-fail')
+h2.innerText = 'Não Encontramos o resultado da sua busca!';
+const p = document.createElement('p');
+p.className = 'p-fail'
+p.innerText = '-Verifique o texto digitado e busque novamente';
+const p2 = document.createElement('p');
+p2.innerText = '-Utilize palavras mais genéricas ou menos palavras';
+p2.className = 'p-fail'
+elemento.appendChild(h2)  
+elemento.appendChild(p)
+elemento.appendChild(p2)
+
+  container.appendChild(elemento);  
+}
 
 async function renderProducts(param) {
   loading();
   // eslint-disable-next-line no-undef
   const dados = await fetchProducts(param);
-  removeLoad();
+  if(dados.results <= 0){
+    removeLoad();
+    failSearch();
+  }
+  else {
+    removeLoad();
   dados.results.forEach((element) => {
     createCardItens(element);
-  });
+  })};
 }
 
 input.addEventListener('keyup', async (event) => {
